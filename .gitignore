@@ -47,3 +47,5 @@
 *.o
 /libjson-c.la
 /libjson.la
+/oncam-build
+/oncam-install
