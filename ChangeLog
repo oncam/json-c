@@ -1,8 +1,4 @@
 
-NEXT.VERSION
-
-  * Nothing yet...
-
 0.11
 
   * IMPORTANT: the name of the library has changed to libjson-c.so and

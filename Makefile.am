@@ -36,7 +36,7 @@ libjson_cinclude_HEADERS = \
 #libjsonx_include_HEADERS = \
 #	json_config.h
 
-libjson_c_la_LDFLAGS = -version-info 2:0:0 -no-undefined
+libjson_c_la_LDFLAGS = -version-info 2:1:0 -no-undefined
 
 if ENABLE_OLDNAME_COMPAT
 libjson_la_LDFLAGS = -version-info 1:0:1 -no-undefined -ljson-c
@@ -66,13 +66,7 @@ maintainer-clean-local:
 	-rm -rf configure
 
 if ENABLE_OLDNAME_COMPAT
-# Remove old headers and create a compatibility link
 install-data-hook:
-	if test -d "$(DESTDIR)@includedir@/json" ; then \
-		(cd "$(DESTDIR)@includedir@/json" && \
-		rm -f $(libjson_cinclude_HEADERS)) ; \
-		rmdir "$(DESTDIR)@includedir@/json" ; \
-	fi
 	test \! -e "$(DESTDIR)@includedir@/json" || rm "$(DESTDIR)@includedir@/json"
 	$(LN_S) json-c "$(DESTDIR)@includedir@/json"
 

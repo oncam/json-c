@@ -12,7 +12,6 @@ Prerequisites:
 	If you're not using a release tarball, you'll also need:
 	autoconf (autoreconf)
 	automake
-	Make sure you have a complete libtool install, including libtoolize
 
 Github repo for json-c:
   https://github.com/json-c/json-c

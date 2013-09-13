@@ -16,7 +16,6 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
-#include <math.h>
 
 #include "debug.h"
 #include "printbuf.h"
@@ -37,13 +36,6 @@
 #if !defined(HAVE_STRNDUP)
   char* strndup(const char* str, size_t n);
 #endif /* !HAVE_STRNDUP */
-
-#if !defined(HAVE_SNPRINTF) && defined(_MSC_VER)
-  /* MSC has the version as _snprintf */
-# define snprintf _snprintf
-#elif !defined(HAVE_SNPRINTF)
-# error You do not have snprintf on your system.
-#endif /* HAVE_SNPRINTF */
 
 // Don't define this.  It's not thread-safe.
 /* #define REFCOUNT_DEBUG 1 */
@@ -569,19 +561,8 @@ static int json_object_double_to_json_string(struct json_object* jso,
 {
   char buf[128], *p, *q;
   int size;
-  /* Although JSON RFC does not support
-     NaN or Infinity as numeric values
-     ECMA 262 section 9.8.1 defines
-     how to handle these cases as strings */
-  if(isnan(jso->o.c_double))
-    size = snprintf(buf, 128, "NaN");
-  else if(isinf(jso->o.c_double) == 1)
-    size = snprintf(buf, 128, "Infinity");
-  else if(isinf(jso->o.c_double) == -1)
-    size = snprintf(buf, 128, "-Infinity");
-  else
-    size = snprintf(buf, 128, "%f", jso->o.c_double);
 
+  size = snprintf(buf, 128, "%f", jso->o.c_double);
   p = strchr(buf, ',');
   if (p) {
     *p = '.';
