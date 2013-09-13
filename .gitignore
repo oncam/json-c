@@ -3,7 +3,6 @@
 /INSTALL
 .deps/
 .libs/
-/aclocal.m4
 /autom4te.cache
 /config.guess
 /json_config.h
@@ -11,7 +10,6 @@
 /config.log
 /config.status
 /config.sub
-/configure
 /depcomp
 /doc
 /install-sh
